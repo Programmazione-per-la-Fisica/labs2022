@@ -212,7 +212,11 @@ cout << "Hello world!\n";
 Formattiamo il codice con _clang-format_ e compiliamo:
 
 ```bash
-$ hello.cpp: In function 'int main()':
+$ g++ -Wall -Wextra hello.cpp -o hello
+```
+
+```bash
+hello.cpp: In function 'int main()':
 hello.cpp:1:14: error: 'cout' was not declared in this scope
     1 | int main() { cout << "Hello world!\n"; }
       |              ^~~~
