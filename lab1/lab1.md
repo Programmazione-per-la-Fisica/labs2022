@@ -121,9 +121,9 @@ $ pwd
 $ code .
 ```
 
-> :warning: **Il comando** `code .` (digitato in questo modo all'interno della
-> cartella di lavoro) ci permette di gestirne tutto il contenuto come un unico
-> progetto, quindi è **da preferire rispetto all'apertura di singoli file**.
+> :exclamation: **Il comando** `code .` (digitato in questo modo all'interno
+> della cartella di lavoro) ci permette di gestirne tutto il contenuto come un
+> unico progetto, quindi è **da preferire rispetto all'apertura di singoli file**.
 
 Poi creiamo un nuovo file vuoto (es. per ora utilizziamo l'interfaccia grafica), e
 salviamolo col nome `hello.cpp`.
@@ -172,7 +172,7 @@ comando _Format Document_:
   <kbd>Shift</kbd> + <kbd>I</kbd>;
 - su Windows il comando è associato ai tasti di scelta rapida <kbd>Alt</kbd> +
   <kbd>Shift</kbd> + <kbd>F</kbd>;
-- su macOS il comando è associato ai tasti di scelta rapida <kbd>Cmd</kbd> +
+- su macOS il comando è associato ai tasti di scelta rapida <kbd>Option</kbd> +
   <kbd>Shift</kbd> + <kbd>F</kbd>.
 
 > :warning: Verificate rapidamente l'utilizzo di clang-format tramite VSCode,
@@ -212,22 +212,15 @@ cout << "Hello world!\n";
 Formattiamo il codice con _clang-format_ e compiliamo:
 
 ```bash
-$ g++-12 -Wall -Wextra hello.cpp -o hello
-hello.cpp: In function 'int main()':
-hello.cpp:5:1: error: 'cout' was not declared in this scope; did you mean 'std::cout'?
-    5 | cout << "Hello world!\n";
-      | ^~~~
-      | std::cout
-In file included from hello.cpp:1:
-/usr/local/Cellar/gcc/12.2.0/include/c++/12/iostream:61:18: note: 'std::cout' declared here
-   61 |   extern ostream cout;          /// Linked to standard output
-      |                  ^~~~
-
+$ hello.cpp: In function 'int main()':
+hello.cpp:1:14: error: 'cout' was not declared in this scope
+    1 | int main() { cout << "Hello world!\n"; }
+      |              ^~~~
 ```
 
-La compilazione non è andata a buon fine e sullo schermo compaiono diversi
-errori. Questi errori ci dicono che `cout` non risulta dichiarato in questo
-ambito. Questo significa il programma non sa dove andare trovare `cout` quindi
+La compilazione non è andata a buon fine e sullo schermo compare un errore che
+dice che `cout` non risulta dichiarato in questo ambito.
+Questo significa il programma non sa dove andare trovare `cout` quindi
 non sa quali azioni questo oggetto debba compiere. L'oggetto `cout` fa parte
 della _standard library_ che verrà discussa estensivamente durante il corso.
 Per dire al programma di cercare la funzione `cout` della _standard library_
@@ -248,7 +241,7 @@ dobbiamo aggiungere `std::` davanti alla funzione.
 Provando a compilare ancora otterremo di nuovo un errore:
 
 ```bash
- $ g++-12 -Wall -Wextra hello.cpp -o hello
+ $ g++ -Wall -Wextra hello.cpp -o hello
 hello.cpp: In function 'int main()':
 hello.cpp:5:6: error: 'cout' is not a member of 'std'
     5 | std::cout << "Hello world!\n";
@@ -287,19 +280,19 @@ durante la sua esecuzione. Modifichiamo il programma per fare sì che stampi su
 schermo una stringa che viene data in input:
 
 ```c++
-#include <iostream>
+#include <iosteram>
 
 int main()
 {
   std::cout << "Insert your name:\n";
-  std::string name;
+  std::string name:
   cin << name;
-  std::cout << "Hello " << name << '\n';
+  std::cout << "Hello " << name << '\n'
 }
 ```
 
-> :warning: Analizzate l'errore prodotto dalla compilazione del programma e
-> cercate di risolverlo.
+> :warning: Analizzate gli errori prodotti dalla compilazione del programma e
+> cercate di risolverli.
 
 Alla fine dei turni del primo laboratorio, potrete trovare la soluzione
 dell'esercizio 1 [al seguente link](soluzioni/hello.cpp)
