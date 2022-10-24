@@ -308,6 +308,8 @@ Cominciamo con il calcolare la somma di due numeri interi dati in input al
 programma e stampare il valore risultate su schermo:
 
 ```c++
+#include <iostream>
+
 int main() {
 
   std::cout << "Provide the first number\n";
@@ -336,7 +338,9 @@ operazione. Supponete di voler controllare se il primo numero intero inserito
 come input al programma sia un multiplo del secondo numero intero inserito.
 Come fareste?
 
-> :warning: Esiste un operatore del C++ che fa al caso vostro.
+> :warning: Esiste un
+> [operatore aritmetico](https://en.cppreference.com/w/cpp/language/operator_arithmetic)
+> del C++ che fa al caso vostro.
 
 Alla fine dei turni del primo laboratorio, potrete trovare la soluzione
 dell'esercizio 2 [al seguente link](soluzioni/domath.cpp)
