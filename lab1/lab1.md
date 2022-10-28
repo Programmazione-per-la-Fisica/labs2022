@@ -296,7 +296,7 @@ int main()
 > cercate di risolverli.
 
 Alla fine dei turni del primo laboratorio, potrete trovare la soluzione
-dell'esercizio 1 [al seguente link](soluzioni/hello.cpp)
+dell'esercizio 1 [al seguente link](soluzioni/hello.cpp).
 
 ## Esercizio 2: operazioni matematiche e uso di variabili
 
@@ -343,7 +343,7 @@ Come fareste?
 > del C++ che fa al caso vostro.
 
 Alla fine dei turni del primo laboratorio, potrete trovare la soluzione
-dell'esercizio 2 [al seguente link](soluzioni/domath.cpp)
+dell'esercizio 2 [al seguente link](soluzioni/domath.cpp).
 
 ## Esercizio 3: somma dei primi _n_ numeri naturali
 
@@ -358,7 +358,9 @@ Una volta fatto questo, estendete la funzionalità del programma per calcolare l
 somma dei numeri naturali compresi in un intervalli arbitrario _[a,b]_.
 
 Alla fine dei turni del primo laboratorio, potrete trovare la soluzione
-dell'esercizio 3 [al seguente link](soluzioni/sum_n.cpp)
+dell'esercizio 3 [al seguente link](soluzioni/sum_n.cpp).
+Inoltre potete trovare la soluzione dell'esercizio bonus
+[qui](soluzioni/sum_a_b.cpp).
 
 ## Approfondimenti ed esercizi
 
