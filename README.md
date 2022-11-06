@@ -26,3 +26,5 @@ che vi incoraggiamo a svolgere da soli.
 
 - [Primo laboratorio](lab1/lab1.md): _VSCode_, _clang-format_, sviluppo di
   semplici programmi e loro compilazione
+- [Secondo laboratorio](lab2/lab2.md): cicli `for` e `while`, funzioni,
+  unit-testing (con _doctest_)
