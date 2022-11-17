@@ -604,6 +604,11 @@ forzare la precisione richiesta in questo modo:
 Alla fine dei turni del secondo laboratorio, potrete trovare la soluzione
 dell'esercizio 3 [al seguente link](soluzioni/taylor.cpp).
 
+Oltre alla soluzione basata sulle istruzioni proposte in laboratorio, abbiamo
+incluso una soluzione dell'esercizio 3, che riduce il numero di operazioni
+eseguite per il calcolo del fattoriale. Potete trovarla
+[al seguente link](soluzioni/taylor_opt.cpp).
+
 ## Consegna facoltativa del lavoro svolto
 
 Per chi lo desiderasse, è possibile effettuare una consegna **facoltativa** del
