@@ -28,3 +28,4 @@ che vi incoraggiamo a svolgere da soli.
   semplici programmi e loro compilazione
 - [Secondo laboratorio](lab2/README.md): cicli `for` e `while`, funzioni,
   unit-testing (con _doctest_)
+- [Terzo laboratorio](lab3/README.md): utilizzo di `struct` e `class`
