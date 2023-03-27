@@ -1,11 +1,15 @@
 {
   "cSpell.words": [
     "battilan",
+    "cmath",
     "cppreference",
+    "ctest",
     "czvf",
+    "DBUILD",
     "doctest",
     "iteratori",
     "l'iteratore",
+    "SFML",
     "struct",
     "SUBCASE"
   ],
@@ -93,6 +97,9 @@
     "*.tcc": "cpp",
     "memory_resource": "cpp",
     "stop_token": "cpp",
-    "cinttypes": "cpp"
+    "cinttypes": "cpp",
+    "unordered_set": "cpp",
+    "variant": "cpp",
+    "filesystem": "cpp"
   }
 }

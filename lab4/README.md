@@ -648,4 +648,7 @@ durante il corso:
   (se riuscite, provate ad evitare di utilizzare `std::accumulate` due volte,
   quindi eseguire due loop, accumulando in un tipo _user defined_ che include
   sia `sum_x` che `sum_x2`, invece che in due numeri `double` separati).
-  
+
+In aggiunta alla soluzione della parte obbligatoria del laboratorio, potete
+trovare una soluzione dell'esercizio che fa uso degli algoritmi
+`std::find` e `std::accumulate` [al seguente link](soluzioni/statistics_algo.cpp).

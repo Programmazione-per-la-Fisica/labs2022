@@ -31,3 +31,5 @@ che vi incoraggiamo a svolgere da soli.
 - [Terzo laboratorio](lab3/README.md): utilizzo di `struct` e `class`
 - [Quarto laboratorio](lab4/README.md): overload di operatori, utilizzo di
   `std::vector<>` e di alcune funzionalità della _standard library_
+- [Quinto laboratorio](lab5/README.md): _compilation model_, distribuzione del
+  codice su più file sorgente, uso di _CMake_
