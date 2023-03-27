@@ -99,8 +99,9 @@ presentate a lezione.
 
 ### Preparazione di `statistics.hpp`
 
-Cominciamo creando un nuovo file `statistics.hpp`, dove spostiamo tutte le classi
-e le funzioni contenute in `statistics.test.cpp`.
+Cominciamo creando un nuovo file `statistics.hpp`, dove spostiamo tutte le
+classi, le funzioni e gli _include statement_ contenuti in `statistics.test.cpp`
+(ad eccezione di `#include "doctest.h"`).
 
 Dentro `statistics.test.cpp` dovrà rimanere solamente il contenuto relativo ai
 test:
@@ -453,24 +454,32 @@ void pf::Sample::add(double x) {
 
 Verifichiamo quindi che compilazione e test vadano a buon fine.
 
-> :exclamation: una volta spostata la definizione di `Sample::add(double x)` in
+> :exclamation: Una volta spostata la definizione di `Sample::add(double x)` in
 > `statistics.cpp` dobbiamo ricordarci di rimuovere la parola chiave `inline`.
 >
 > :question: Cosa succede se non lo facciamo?
 
 Procediamo nello stesso modo spostando anche
 `Sample operator+(const Sample& l, const Sample& r)`.
+
+> :exclamation: Ricordatevi di anteporre lo _scope operator_ `pf::` ovunque
+> risulti necessario.
+
 Compilando possiamo notare che la funzione non è più visibile al di fuori di
 `statistics.cpp`:
 
 ```bash
 $ g++ -Wall -Wextra statistics.test.cpp statistics.cpp -o statistics.t
 statistics.test.cpp: In function 'void DOCTEST_ANON_FUNC_14()':
-statistics.test.cpp:71:23: error: no match for 'operator+' (operand types are 'Sample' and 'Sample')
-   71 |     auto sum = sample + sample_two;
+statistics.test.cpp:72:23: error: no match for 'operator+' (operand types are 'pf::Sample' and 'pf::Sample')
+   72 |     auto sum = sample + sample_two;
       |                ~~~~~~ ^ ~~~~~~~~~~
       |                |        |
-      |                Sample   Sample
+      |                |        pf::Sample
+      |                pf::Sample
+statistics.cpp:58:66: error: 'pf::Sample pf::operator+(const Sample&, const Sample&)' should have been declared inside 'pf'
+   58 | pf::Sample pf::operator+(const pf::Sample& l, const pf::Sample& r) {
+      |                                                                  ^
 ```
 
 Per renderla di nuovo accessibile, dobbiamo dichiarare (ma non definire)
@@ -510,6 +519,18 @@ Ricordandoci, ad ogni passaggio, di **compilare e di eseguire i test**.
 > :question: Possiamo continuare ad usare `auto` come tipo di ritorno per la
 > funzione membro `auto remove(double x)` o risulta necessario specificarlo in
 > maniera esplicita? Perché?
+>
+> :question: Per evitare di anteporre ripetutamente `pf::` nell'implementazione
+> delle diverse funzioni che abbiamo spostato in `statistics.cpp`, possiamo
+> racchiuderle direttamente in un `namespace`, come mostrato qui?
+>
+> ```c++
+> namespace pf {
+>
+>   void Sample::add(double x) { entries_.push_back(x); }
+>   ...
+> }
+> ```
 
 Per completare quest'ultimo punto dell l'esercizio, andiamo a considerare
 un'ultima cosa: visto quanto abbiamo detto sul preprocessore, quanti degli
