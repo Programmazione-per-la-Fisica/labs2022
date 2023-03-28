@@ -418,7 +418,7 @@ Verifichiamo a questo punto che il codice compili e funzioni correttamente:
 
 ```bash
 $ g++ -Wall -Wextra statistics.test.cpp statistics.cpp -o statistics.t 
-$ ./statistics
+$ ./statistics.t
 [doctest] doctest version is "2.4.11"
 [doctest] run with "--help" for options
 ===============================================================================
