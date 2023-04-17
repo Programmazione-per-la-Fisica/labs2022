@@ -179,25 +179,6 @@ Inoltre, siccome non abbiamo ancora eseguito nessun commit, risulta inutile
 ispezionare la storia della nostra repo con `git log`, che (in questo caso)
 produce un errore.
 
-> :exclamation: In caso la versione di Git che risulta installata sulla vostra
-> macchina sia inferiore alla `2.28`, il parametro di configurazione
-> `init.defaultBranch "main"` non sortirà alcun effetto, e dovreste osservare
-> che il vostro branch di lavoro si chiama `master`.
->
-> Se riscontrate questo piccolo problema, rinominate il branch tramite il
-> comando seguente (e verificate che il cambio sia avvenuto come atteso eseguendo
-> ancora una volta il comando `git status`):
->
-> ```bash
-> $ git branch -m master main
-> $ git status
-> On branch main
-> 
-> No commits yet
-> 
-> nothing to commit (create/copy files and use "git add" to track)
-> ```
-
 ### Aggiungere file alla _repository_
 
 Aggiungiamo quindi i file relativi al progetto nella nostra repo:
@@ -259,12 +240,32 @@ della repo.
 Il comando `git log`, invece evidenzia la presenza di un singolo commit (nel
 branch `main`) e ne fornisce alcuni dettagli.
 
+> :exclamation: In caso la versione di Git che risulta installata sulla vostra
+> macchina sia inferiore alla `2.28`, il parametro di configurazione
+> `init.defaultBranch "main"` non sortirà alcun effetto, e dovreste osservare
+> che il vostro branch di lavoro si chiama `master`.
+>
+> Se riscontrate questo piccolo problema, rinominate il branch tramite il
+> comando seguente (e verificate che il cambio sia avvenuto come atteso eseguendo
+> ancora una volta il comando `git status`):
+>
+> ```bash
+> $ git branch -m master main
+> $ git status
+> On branch main
+> 
+> No commits yet
+> 
+> nothing to commit (create/copy files and use "git add" to track)
+> ```
+
 ### Aggiungere `.gitignore`
 
-Procediamo quindi a compilare il progetto ed eseguire i test:
+Procediamo quindi a compilare il progetto ed eseguire i test (per ora
+utilizziamo la modalità di debug specificando: `-DCMAKE_BUILD_TYPE=Debug`):
 
 ```bash
-$ cmake -S . -B build                                                                             
+$ cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug                                                                          
 -- The C compiler identification is AppleClang 14.0.0.14000029
 -- The CXX compiler identification is AppleClang 14.0.0.14000029
 -- Detecting C compiler ABI info
@@ -281,12 +282,17 @@ $ cmake -S . -B build
 -- Generating done (0.0s)
 -- Build files have been written to: /home/fferrari/pf_labs/lab6/build
 
+```
+
+```bash
 $ cmake --build build
 [ 33%] Building CXX object CMakeFiles/statistics.t.dir/statistics.test.cpp.o
 [ 66%] Building CXX object CMakeFiles/statistics.t.dir/statistics.cpp.o
 [100%] Linking CXX executable statistics.t
 [100%] Built target statistics.t
+```
 
+```bash
 $ cmake --build build --target test                                                               
 Running tests...
 Test project /home/fferrari/pf_labs/lab6/build
@@ -627,7 +633,7 @@ Procediamo poi includendo i cambiamenti nel branch `add_random`:
 ```bash
 $ git add main.cpp CMakeLists.txt
 $ git commit -m "Add main using random numbers generation"
-[add_main bd314b5] Add main using random numbers generation
+[add_random bd314b5] Add main using random numbers generation
  2 files changed, 18 insertions(+), 1 deletion(-)
  create mode 100644 main.cpp
 $ git status                 
@@ -719,7 +725,7 @@ Deleted branch add_random (was bd314b5).
 
 ```bash
 $ git log --oneline --graph 
-*   0b17eb6 (HEAD -> main) Merge branch 'add_main'
+*   0b17eb6 (HEAD -> main) Merge branch 'add_random'
 |\  
 | * bd314b5 Add main using random numbers generation
 |/  
@@ -736,6 +742,13 @@ Per valutare le prestazioni del nostro codice potrebbe essere interessante
 misurarne il tempo di esecuzione. Vediamo di seguito un metodo comunemente
 usato per farlo.
 
+> :exclamation: Ricordarsi di compilare il codice in _release_ mode
+>
+> ```bash
+> $ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+> $ cmake --build build
+> ```
+
 #### Il comando `time`
 
  Un modo molto semplice per fare ciò è utilizzare il comando `time`.
@@ -743,7 +756,7 @@ usato per farlo.
  eseguibile:
 
 ```bash
-$ > time ./statistics
+$ time ./build/statistics
 - mean: -0.00150972
 - sigma: 1.00086
 
@@ -866,7 +879,7 @@ Supponiamo adesso di avere un campione di dati salvato su file e di volerlo
 leggere per processarlo tramite la classe `Sample`. Possiamo utilizzare `std::ifstream is{"filename"}` per leggere da file dei valori, dove `"filename"`
 rappresenta il _path_ del file che vogliamo leggere.
 
-> :exclamation: Ricordatevi di includere l'header file `std::fstream` per poster
+> :exclamation: Ricordatevi di includere l'header file `fstream` per poter
 > usare sia `std::ifstream` che `std::ofstream`.
 >
 > :question: È buona norma controllare che l'apertura del file in lettura sia
@@ -875,7 +888,8 @@ rappresenta il _path_ del file che vogliamo leggere.
 Procedete a scaricare il file `data.txt` da questo link:
 
 ```bash
-$ curl https://raw.githubusercontent.com/Programmazione-per-la-Fisica/labs-development/labs2022/lab6/samples/data.txt -o data.txt
+$ curl https://raw.githubusercontent.com/Programmazione-per-la-Fisica/labs2022/main/lab6/samples/data.txt -o data.txt
+
 ```
 
 Procedete poi a leggerlo all'interno del vostro _main program_.
