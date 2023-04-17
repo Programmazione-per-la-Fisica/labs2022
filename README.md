@@ -33,3 +33,5 @@ che vi incoraggiamo a svolgere da soli.
   `std::vector<>` e di alcune funzionalità della _standard library_
 - [Quinto laboratorio](lab5/README.md): _compilation model_, distribuzione del
   codice su più file sorgente, uso di _CMake_
+- [Sesto laboratorio](lab6/README.md): uso di _Git_, introduzione alla
+  generazione di numeri (pseudo)casuali ed alla lettura/scrittura da/su file
