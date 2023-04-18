@@ -582,10 +582,11 @@ Dopo averlo aperto, possiamo notare come questo, di proposito, sia stato
 commentato in dettaglio in modo da rendere chiaro il funzionamento di ogni
 sua parte.
 
-Per utilizzarlo, ci basta eseguire i seguenti comandi:
+Per utilizzarlo, ci basta eseguire i seguenti comandi (per ora
+utilizziamo la modalità di debug specificando: `-DCMAKE_BUILD_TYPE=Debug`):
 
 ```bash
-$ cmake -S . -B build
+$ cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 -- The C compiler identification is AppleClang 14.0.0.14000029
 -- The CXX compiler identification is AppleClang 14.0.0.14000029
 -- Detecting C compiler ABI info
