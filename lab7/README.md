@@ -218,7 +218,7 @@ Suggeriamo di farlo partendo da una __base__ simile a quella che segue:
 ```c++
 class Chain {
   Hooke m_inter;
-  std::vector<ParticleState> m_pses;
+  std::vector<ParticleState> m_particle_states;
 
   public:
 
@@ -334,7 +334,7 @@ Pensate inoltre ad altri possibili test che potrebbe essere utile implementare.
 
 > :exclamation: quando si calcola l'evoluzione di uno stato di `Chain`, le forze
 > vanno calcolate utilizzando sempre stati dei punti materiali di
-> `std::vector<ParticleState> m_pses` che si riferiscono tutti al medesimo istante
+> `std::vector<ParticleState> m_particle_states` che si riferiscono tutti al medesimo istante
 > _t_.
 > Sarebbe pertanto sbagliato fare evolvere il primo `ParticleState` da _t_ a
 > _t + &Delta;t_, poi fare evolvere il secondo `ParticleState` riferendosi al
