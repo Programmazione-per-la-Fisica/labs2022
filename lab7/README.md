@@ -112,13 +112,13 @@ diverse parti che, in generale, risulteranno testabili separatamente.
 
 Più in dettaglio, utilizzeremo:
 
-- una _struct_ per descrivere lo stato di ciascuno dei punti materiale che
-  compongono la nostra catena di punti materiali (`ParticleState`);
+- una _struct_ per descrivere lo stato di ciascuno dei punti materiali che
+  compongono la nostra catena (`ParticleState`);
 - un _function object_ che descrive l'interazione tra due punti materiali,
   secondo la legge di _Hooke_ (`Hooke`);
 - una _class_ `Chain` che ci permetterà di "costruire" la nostra catena di punti
-- punti materiali collegati da molle, e di calcolarne la dinamica tramite l'uso
-- di un semplice
+  materiali collegati da molle, e di calcolarne la dinamica tramite l'uso
+  di un semplice
   [modello di integrazione numerica](#un-semplice-modello-di-integrazione-numerica).
 
 ### Primo passo: stato di un punto materiale
