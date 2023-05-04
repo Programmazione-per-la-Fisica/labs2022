@@ -876,7 +876,8 @@ Qualora optiate per la rimozione, verificate che il comando:
 ### Lettura/scrittura da/su file
 
 Supponiamo adesso di avere un campione di dati salvato su file e di volerlo
-leggere per processarlo tramite la classe `Sample`. Possiamo utilizzare `std::ifstream is{"filename"}` per leggere da file dei valori, dove `"filename"`
+leggere per processarlo tramite la classe `Sample`. Possiamo utilizzare 
+`std::ifstream is{"filename"}` per leggere da file dei valori, dove `"filename"`
 rappresenta il _path_ del file che vogliamo leggere.
 
 > :exclamation: Ricordatevi di includere l'header file `fstream` per poter
@@ -920,7 +921,8 @@ il _path_ del file che vogliamo produrre.
 > avvenuta con successo. Come fareste?
 
 Alla fine dei turni del sesto laboratorio, potrete trovare la soluzione
-degli esercizi [al seguente link](soluzioni/).
+dell'esercizio proposto, completato risolvendo anche gli approfondimenti
+facoltativi [al seguente link](soluzioni/).
 
 ## Consegna facoltativa del lavoro svolto
 
