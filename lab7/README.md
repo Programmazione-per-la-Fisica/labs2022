@@ -5,7 +5,6 @@ per sviluppare semplice programma (_toy model_) che calcola, tramite un metodo
 di integrazione numerica, l'evoluzione dinamica di un sistema composto da più
 punti materiali interagenti.
 
-
 - [Laboratorio 7](#laboratorio-7)
   - [Area di lavoro](#area-di-lavoro)
   - [Obiettivo finale](#obiettivo-finale)
@@ -67,7 +66,7 @@ points_), i quali:
 - sono liberi di muoversi in una dimensione (es. lungo l'asse _x_);
 - sono collegati l'uno all'altro tramite molle.
 
-__Assumiamo inoltre che__:
+**Assumiamo inoltre che**:
 
 - ogni molla applichi una forza, uguale in modulo ma di verso opposto, ai
   punti materiali che connette (es. per _1_ e _2_ : _F_<sup>12</sup> = - _F_<sup>21</sup>);
@@ -84,10 +83,10 @@ Uno schema che descrive graficamente il sistema è mostrato qui:
 
 ![many_body_spring](figs/many_body_spring.png)
 
-__Il progetto sembra complesso!__
+**Il progetto sembra complesso!**
 
 Come spesso si fa in questi casi, per realizzare la soluzione finale del
-problema, procederemo __un passo alla volta__, __fattorizzando lo sviluppo__
+problema, procederemo **un passo alla volta**, **fattorizzando lo sviluppo**
 delle diverse componenti.
 
 Prima di sviluppare nuove funzionalità, vi verrà chiesto di preparare alcuni
@@ -148,8 +147,8 @@ Il secondo passo è costruire in C++ "qualcosa" che, dati due punti materiali
 da una molla di costante _k_ e lunghezza a riposo _l_, secondo la [_legge di
 Hooke_](https://it.wikipedia.org/wiki/Legge_di_Hooke).
 
-Per farlo, suggeriamo di sviluppare un __oggetto funzione__ a partire dalla
-seguente __struttura__:
+Per farlo, suggeriamo di sviluppare un **oggetto funzione** a partire dalla
+seguente **struttura**:
 
 ```c++
 class Hooke {
@@ -213,7 +212,7 @@ $ cmake --build build --target test
 Una volta fatte le dovute verifiche sull'oggetto funzione `Hooke`, siamo pronti
 ad implementare la classe `Chain`.
 
-Suggeriamo di farlo partendo da una __base__ simile a quella che segue:
+Suggeriamo di farlo partendo da una **base** simile a quella che segue:
 
 ```c++
 class Chain {
@@ -251,7 +250,7 @@ L'implementazione nel rispettivo file `chain.cpp` è lasciata a voi.
 
 L'interfaccia ci fornisce in teoria tutto quello che ci serve per seguire
 l'evoluzione del nostro sistema dinamico, ma ci manca un'informazione
-fondamentale: __che equazioni usiamo per effettuare i calcoli durante l'evoluzione?__
+fondamentale: **che equazioni usiamo per effettuare i calcoli durante l'evoluzione?**
 
 > Ricordatevi di includere l'header file `hooke.hpp` all'interno dell'header file della classe `Chain`, altrimenti la classe non potrà avere accesso ad oggetti di tipo `Hooke`.
 
@@ -259,7 +258,7 @@ fondamentale: __che equazioni usiamo per effettuare i calcoli durante l'evoluzio
 
 Un modo semplice per risolvere il problema numericamente è quello di assumere
 che, per intervalli `delta_t` abbastanza piccoli, si possa approssimare
-il moto di ogni `ParticleState` ad un moto __uniformemente accelerato__:
+il moto di ogni `ParticleState` ad un moto **uniformemente accelerato**:
 
 1. _a(t)_ = _&Sigma;F(t)_ / _m_
 1. _v(t + &Delta;t)_ = _v(t)_ + _a(t)_ &sdot; _&Delta;t_
@@ -344,7 +343,7 @@ Verificate che il programma compili e superi tutti test che avete preparato.
 
 ## Un _main program_ che utilizza la classe `Chain`
 
-Se siete arrivati fino a questo punto, __complimenti__ :tada:!
+Se siete arrivati fino a questo punto, **complimenti** :tada:!
 
 Sebbene con alcune limitazioni, l'approccio utilizzato per lo sviluppo di
 `Chain` rappresenta una versione semplificata di quello che si può fare per
@@ -444,6 +443,30 @@ quello che ci aspetteremmo:
   delle diverse molle (9, visto che i punti sono 10): il potenziale
   dell'oscillatore armonico è simmetrico, quindi, nel tempo, la catena oscilla
   in modo simmetrico rispetto alla sua lunghezza a riposo.
+
+> :exclamation: Come potete notare il file `main.cpp` include la funzione libera
+> `simulate`, che fa evolvere il sistema utilizzando intervalli di tempo molto
+> piccoli ($0.001\ s$), registrando però lo stato della simulazione solo in una
+> frazione dei casi.
+>
+> :question: Perché risulta necessario ricorrere ad un tale _trucco_?
+> 
+> Per capirlo ripetete la simulazione utilizzando i seguenti valori:
+>
+> ```c++
+>   double const duration{20.0};
+>   int const steps{200};
+>   int const prescale{1};
+> ```
+>
+> Come potrete notare, simulare l'evoluzione del sistema utilizzando intervalli
+> di tempo di $0.1\ s$, porta presto ad ottenere risultati insensati.
+>
+> :exclamation: Questo effetto è dovuto ai **limiti del metodo di integrazione
+> numerica che abbiamo utilizzato**.
+>
+> :exclamation: In generale (es.: nei progetti proposti per l'esame) **NON
+> È NECESSARIO** utilizzare un trucco come questo.
 
 ## Alcune considerazioni
 
@@ -584,24 +607,17 @@ implementata facendo uso di
 
 #### Funzione `print_state`
 
-Analogamente, potete utilizzare
-[`std::for_each`](https://en.cppreference.com/w/cpp/algorithm/for_each), in
-combinazione con una funzione `print_state` per la stampa di:
+Analogamente, potreste esercitarvi scrivendo una funzione di `print_state` che
+permette di stampare a schermo gli stati campionati, che si avvalga di
+`std::accumulate` per il calcolo di `sum_m`, `sum_mx`, e `sum_mv`.
 
-```c++
-std::cout << "Report for each fo the stored states:\n";
-std::cout << " length : center of mass x : center of mass v\n";
-std::for_each(v_states.begin(), v_states.end(), print_state);
-```
-
-> :exclamation: anche all'interno di `print_state` potrebbe essere utile
-> avvalersi di `std::accumulate`. Come potreste fare per gestire l'accumulazione
-> di `sum_m`, `sum_mx`, e `sum_mv` evitando di utilizzare `std::accumulate` più
+> :question: Come potreste fare per gestire l'accumulazione di `sum_m`,
+> `sum_mx`, e `sum_mv` evitando di utilizzare `std::accumulate` più
 > volte?
 
-È vero, questa separazione implica effettuare due _loop_ su `v_states`, uno in
-`print_state` ed uno in `print_summary`, ma per questo laboratorio è un
-compromesso accettabile che offre una scusa per _fare pratica_.
+È vero, questa separazione implica effettuare due _loop_ su `v_states`: uno in
+`print_state` ed uno in `print_summary`. Per questo laboratorio è un compromesso
+accettabile che offre una scusa per _fare pratica con gli algoritmi_.
 
 #### Inserimento dei punti della `Chain` tramite `generate_n`
 
