@@ -14,11 +14,11 @@
 // (*) https://github.com/Programmazione-per-la-Fisica/labs2022/tree/main/lab7#un-main-program-che-utilizza-la-classe-chain
 
 auto simulate(Chain& chain, double duration, int steps, int prescale) {
-  std::vector<std::vector<PPState>> v_states;
+  std::vector<std::vector<ParticleState>> v_states;
 
   double delta_t{duration / steps};
 
-  for (int step = 0; step != steps; ++step) {
+  for (int step{0}; step != steps; ++step) {
     if (step % prescale == 0) {
       v_states.push_back(chain.state());
     }
