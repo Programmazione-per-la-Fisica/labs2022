@@ -203,6 +203,11 @@ $ cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
 ```
 
 ```bash
+$ cmake --build build
+...
+```
+
+```bash
 $ cmake --build build --target test
 ...
 ```
