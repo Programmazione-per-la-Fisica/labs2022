@@ -1,7 +1,7 @@
-#include "chain.hpp"
-
 #include <iomanip>
 #include <iostream>
+
+#include "chain.hpp"
 
 // Esegue la simulazione della catena, suddividendo "duration" in "steps"
 // e registrando lo stato ogni volta che si compie un numero di step pari
@@ -9,23 +9,24 @@
 // NOTA: come descritto nella traccia del laboratorio (*) l'utilizzo della
 // funzione libera simulate è una conseguenza dei limiti relativi al metodo
 // di integrazione che abbiamo utilizzato.
-// Pertanto, in generale (es.: nei progetti d'esame) **non serve in alcun modo** 
+// Pertanto, in generale (es.: nei progetti d'esame) **non serve in alcun modo**
 // utilizzare il medesimo approccio.
-// (*) https://github.com/Programmazione-per-la-Fisica/labs2022/tree/main/lab7#un-main-program-che-utilizza-la-classe-chain
+// (*)
+// https://github.com/Programmazione-per-la-Fisica/labs2022/tree/main/lab7#un-main-program-che-utilizza-la-classe-chain
 
 auto simulate(Chain& chain, double duration, int steps, int prescale) {
-  std::vector<std::vector<ParticleState>> v_states;
+  std::vector<std::vector<ParticleState>> states;
 
   double delta_t{duration / steps};
 
   for (int step{0}; step != steps; ++step) {
     if (step % prescale == 0) {
-      v_states.push_back(chain.state());
+      states.push_back(chain.state());
     }
     chain.evolve(delta_t);
   }
 
-  return v_states;
+  return states;
 }
 
 int main() {
