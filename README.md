@@ -35,3 +35,5 @@ che vi incoraggiamo a svolgere da soli.
   codice su più file sorgente, uso di _CMake_
 - [Sesto laboratorio](lab6/README.md): uso di _Git_, introduzione alla
   generazione di numeri (pseudo)casuali ed alla lettura/scrittura da/su file
+- [Settimo laboratorio](lab7/README.md): catena di oscillatori armonici la cui
+  dinamica è calcolata tramite metodi di inegrazione numerica
